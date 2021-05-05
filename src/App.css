@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+div#tasks{
+  background-color:green;
+  display: flex;
+  flex-direction: row;
+
+}
+div.todoListSidebar{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 250px;
+}
+div.tasks-info{
+  background-color: wheat;
+}
+div.tasks-info h1{
+  text-align: center;
+}
+

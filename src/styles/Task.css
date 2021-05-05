@@ -1,0 +1,12 @@
+.task-block{
+    position: relative;
+
+}
+.task-block button {
+    position: absolute;
+    right:0px;
+    bottom: 10px;
+    font-size: small;
+    height: 2rem;
+    width: 5rem;
+}
