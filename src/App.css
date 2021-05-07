@@ -53,4 +53,10 @@ div.tasks-info{
 div.tasks-info h1{
   text-align: center;
 }
-
+div.task-block{
+  border: red 1px groove;
+}
+div #task-list {
+  background-color: wheat;
+  min-width: 175px;
+}
