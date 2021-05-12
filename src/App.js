@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
-import Tasks from "./Tasks";
+import Tasks from "./components/Tasks";
 import { useEffect } from "react";
-import Dashboard from "./Dashboard";
+import Dashboard from "./components/Dashboard";
 import { Route } from "react-router";
-import TodayTasks from "./TodayTasks";
+import TodayTasks from "./components/TodayTasks";
 import { BrowserRouter } from "react-router-dom";
-import NotDone from "./NotDone";
+import NotDone from "./components/NotDone";
+import { loadDashboard } from "./store/dashboard/actions";
+import { useDispatch,useSelector } from "react-redux";
+import {loadTasks} from './store/tasks/actions'
+
 const url = "http://localhost:5000/api/";
 function App() {
   const [taskLists, setTaskLists] = useState([]);
@@ -20,8 +24,13 @@ function App() {
         setSelectedList(lists[0]);
       });
   }, []);
+  
+
+
+
   return (
     <div id="tasks">
+
       <BrowserRouter>
         <div className="todoListSidebar">
           <Dashboard lists={taskLists} selectedList={setSelectedList} />
@@ -33,8 +42,8 @@ function App() {
         <Route path="/today">
           <TodayTasks lists={taskLists} />
         </Route>
-        <Route path ="/not-done">
-          <NotDone list={list} lists={taskLists}/>
+        <Route path="/not-done">
+          <NotDone list={list} lists={taskLists} />
         </Route>
       </BrowserRouter>
     </div>
