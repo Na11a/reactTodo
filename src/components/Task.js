@@ -2,13 +2,13 @@ import React from "react";
 import {  NavLink } from "react-router-dom";
 import "../styles/Task.css";
 
-export default function Task({ task, getRemoveTask, updateDone,lists,...others }) {
+export default function Task({ task, getRemoveTask, getUpdateTask,lists,...others }) {
   const deadline =
     task.dueDate === null ? "" : task.dueDate.toLocaleString().slice(0, 10);
   const doneChange = () => {
     task.done = task.done ? false : true;
-    updateDone(task);
-  };
+    getUpdateTask(task)
+  }
   return (
     <div className="task-block">
       <h1 className="title">{task.title}</h1>

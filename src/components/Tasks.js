@@ -4,10 +4,9 @@ import "../styles/Tasks.css";
 import { useState, useEffect } from "react";
 import NewTaskForm from "../NewTaskForm";
 import { useParams } from "react-router";
-import {loadTasks,createTask} from '../store/tasks/actions'
+import {loadTasks,createTask,deleteTask,updateTask} from '../store/tasks/actions'
 import { useDispatch,useSelector } from "react-redux";
 
-import { deleteTask, patchTask,  } from "../task-service/api-service";
 const url = "http://localhost:5000/api/";
 
 export default function Tasks(props) {
@@ -21,13 +20,16 @@ export default function Tasks(props) {
   const tasks = useSelector(state=>state.tasks)
   console.log(tasks)
 
-  // const removeTask = (t) => {
-  //   deleteTask(t).then(setTasks(tasks.filter((task) => t.id !== task.id)));
-  // };
+  const removeTask = (task) => {
+    task.taskListId =id;
+    dispatch(deleteTask(task))
+  };
 
-  // const updateDone = (t) => {
-  //   patchTask(t).then(() => setTasks([...tasks]));
-  // };
+  const updateDone = (task) => {
+    task.taskListId = id;
+    dispatch(updateTask(task))
+    console.log(task)
+  };
 
   const addTask = (task) =>{
     task.taskListId=id    
@@ -40,6 +42,8 @@ export default function Tasks(props) {
           key={i}
           task={t}
           lists={lists}
+          getRemoveTask={removeTask}
+          getUpdateTask={updateDone}
         />
       ))}
       <NewTaskForm onSubmit={addTask}/>
